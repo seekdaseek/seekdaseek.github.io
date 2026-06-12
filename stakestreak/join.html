@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a StakeStreak pot</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:480px;margin:40px auto;padding:0 20px;color:#2B2118;background:#FFF4EC;text-align:center;line-height:1.6}
+h1{color:#FF5A36}.code{font-size:26px;font-weight:900;background:#FFF;border:2px dashed #FF5A36;border-radius:16px;padding:14px;margin:18px 0;letter-spacing:2px}
+.btn{display:inline-block;background:#FF5A36;color:#FFF;font-weight:800;padding:14px 28px;border-radius:16px;text-decoration:none;margin:8px 4px;border:none;font-size:16px;cursor:pointer}
+.meta{color:#8A7E72}</style></head><body>
+<h1>&#x1F525; You're invited</h1>
+<p>A friend challenged you to a StakeStreak pot: stake SOL, check in daily, survivors split the quitters' stakes.</p>
+<div class="code" id="code"></div>
+<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText)">Copy code</button>
+<p class="meta">1. Get StakeStreak from the Solana dApp Store on your Seeker<br>2. Connect wallet<br>3. Paste this code in "Have an invite code?"</p>
+<script>
+document.getElementById('code').innerText = new URLSearchParams(location.search).get('p') || '';
+</script></body></html>
