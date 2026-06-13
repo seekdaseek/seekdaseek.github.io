@@ -1,0 +1,45 @@
+{
+  "name": "skrly Genesis #119",
+  "symbol": "SKRLY",
+  "description": "skrly Genesis \u2014 a founding-member collection of 369 on the Solana Seeker ecosystem.",
+  "image": "https://seekdaseek.github.io/skrly/images/119.png",
+  "attributes": [
+    {
+      "trait_type": "Tier",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Amber"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Glow"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "Sunglasses"
+    },
+    {
+      "trait_type": "Marking",
+      "value": "None"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Big Smile"
+    },
+    {
+      "trait_type": "Edition",
+      "value": "119 of 369"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://seekdaseek.github.io/skrly/images/119.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}

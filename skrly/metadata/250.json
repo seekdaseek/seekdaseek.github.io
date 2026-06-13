@@ -1,0 +1,45 @@
+{
+  "name": "skrly Genesis #250",
+  "symbol": "SKRLY",
+  "description": "skrly Genesis \u2014 a founding-member collection of 369 on the Solana Seeker ecosystem.",
+  "image": "https://seekdaseek.github.io/skrly/images/250.png",
+  "attributes": [
+    {
+      "trait_type": "Tier",
+      "value": "Mythic"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Prismatic"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Laser"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "Halo"
+    },
+    {
+      "trait_type": "Marking",
+      "value": "s-glyph"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Content"
+    },
+    {
+      "trait_type": "Edition",
+      "value": "250 of 369"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://seekdaseek.github.io/skrly/images/250.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}
