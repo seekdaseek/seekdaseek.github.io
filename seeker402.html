@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seeker402 — Solana Mobile Grant Request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --ink:#12141A;
+    --rule:#DBDBD4;
+    --muted:#6B6F76;
+    --blocked:#B02E0C;
+    --auth:#3B1E8F;
+    --settled:#0F5132;
+    --stamp:#EFEDE6;
+    --max:940px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding:0 24px 96px;
+  }
+  .wrap{max-width:var(--max);margin:0 auto}
+
+  /* ---- masthead ---- */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:16px;flex-wrap:wrap;
+    padding:20px 0;border-bottom:1px solid var(--rule);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ---- hero ---- */
+  .hero{padding:72px 0 56px;border-bottom:2px solid var(--ink)}
+  .code{
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:clamp(96px,22vw,220px);line-height:.82;
+    letter-spacing:-.05em;color:var(--blocked);
+    font-variant-numeric:tabular-nums;
+  }
+  .code .dim{color:var(--ink);opacity:.12}
+  .status{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+    margin-top:18px;
+  }
+  h1{
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:clamp(26px,3.6vw,40px);line-height:1.14;
+    letter-spacing:-.02em;margin-top:28px;max-width:20ch;
+  }
+  .lede{margin-top:20px;max-width:60ch;font-size:18px;color:#33383F}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* ---- sections numbered as instructions ---- */
+  section{padding:56px 0;border-bottom:1px solid var(--rule)}
+  .ix{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    display:flex;gap:12px;align-items:center;margin-bottom:22px;
+  }
+  .ix::after{content:"";flex:1;height:1px;background:var(--rule)}
+  h2{
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:clamp(22px,2.8vw,30px);letter-spacing:-.015em;
+    margin-bottom:18px;max-width:26ch;
+  }
+  p{max-width:66ch;margin-bottom:14px;color:#2B3037}
+  p.tight{margin-bottom:8px}
+  strong{font-weight:600;color:var(--ink)}
+
+  /* ---- the signature element: the device log ---- */
+  .log{
+    background:var(--ink);color:#D7DCE3;border-radius:2px;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.75;
+    padding:26px 24px;overflow-x:auto;margin:26px 0 18px;
+  }
+  .log .k{color:#8892A0}
+  .log .ok{color:#5CD6A6;font-weight:600}
+  .log .hot{color:#FF9A62;font-weight:600}
+  .log .hdr{
+    color:#8892A0;border-bottom:1px solid #2A303A;
+    padding-bottom:10px;margin-bottom:12px;
+    letter-spacing:.16em;text-transform:uppercase;font-size:11px;
+  }
+  .readout{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:26px;
+  }
+  .readout div{background:var(--paper);padding:16px 18px}
+  .readout dt{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+  }
+  .readout dd{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .yes{color:var(--settled)}
+  .note{color:var(--blocked)}
+
+  /* ---- lists ---- */
+  ol.build{list-style:none;counter-reset:b;margin-top:6px}
+  ol.build li{
+    counter-increment:b;padding:20px 0 20px 54px;position:relative;
+    border-top:1px solid var(--rule);max-width:70ch;
+  }
+  ol.build li:first-child{border-top:none}
+  ol.build li::before{
+    content:counter(b,decimal-leading-zero);position:absolute;left:0;top:20px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blocked);
+    font-weight:600;letter-spacing:.08em;
+  }
+  ol.build h3{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;
+    margin-bottom:6px;letter-spacing:-.01em;
+  }
+  ol.build p{margin:0;font-size:15px;color:#3A4048}
+
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:15px}
+  th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);font-weight:500;
+    border-bottom:1px solid var(--ink);
+  }
+  td.n{
+    font-family:'IBM Plex Mono',monospace;text-align:right;white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  tr.total td{border-bottom:none;border-top:2px solid var(--ink);font-weight:700;padding-top:15px}
+  tr.total td.n{font-family:'Archivo',sans-serif;font-size:19px}
+  .ms{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--blocked);white-space:nowrap}
+
+  /* ---- signature stamp ---- */
+  .sig{
+    margin-top:52px;padding:28px;border:1px solid var(--ink);
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start;
+  }
+  .sig .who{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px}
+  .sig .meta{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);
+    line-height:2;text-align:right;
+  }
+  .sig a{color:var(--auth);text-decoration:none;border-bottom:1px solid #C9BFEA}
+  .sig a:hover{border-bottom-color:var(--auth)}
+  @media (max-width:640px){
+    .sig .meta{text-align:left}
+    .code{font-size:26vw}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <span>Solana Mobile Grant Request</span>
+    <span>Seeker402 &nbsp;/&nbsp; seekdaseek &nbsp;/&nbsp; 14 July 2026</span>
+  </div>
+
+  <div class="hero">
+    <div class="code">4<span class="dim">0</span>2</div>
+    <div class="status">HTTP 402 &middot; Payment Required &middot; RFC 9110 &sect;15.5.3</div>
+    <h1>Reserved since 1997. No phone has ever answered it.</h1>
+    <p class="lede">
+      x402 is the rail AI agents use to buy data and services over HTTP, per request, in stablecoins.
+      It works — and it is entirely server&#8209;to&#8209;server. Machines in data centres paying machines in data centres.
+      <b>The consumer side does not exist. No phone can pay a 402.</b>
+    </p>
+    <p class="lede">
+      The Seeker is the only phone on earth with a hardware key store built for exactly this.
+      Nobody had checked whether Seed Vault could sign an x402 payment. So I checked.
+      <b>It can. Here is the evidence.</b>
+    </p>
+  </div>
+
+  <section id="proof">
+    <div class="ix">Instruction 00 &nbsp;&middot;&nbsp; The proof</div>
+    <h2>I ran the experiment before I wrote this deck</h2>
+    <p>
+      14 July 2026, on a physical Seeker, MWA 2.2.8, against my own live x402 server
+      (<strong>AgentFeed</strong> — 15 paid routes, real mainnet USDC settling through the Coinbase CDP facilitator).
+      I asked Seed Vault to sign a v0 transaction whose <strong>fee payer is the facilitator, not the user</strong> —
+      the exact shape an x402 payment requires, and the thing everyone assumes a hardware wallet will refuse.
+    </p>
+
+    <div class="log">
+      <div class="hdr">Seeker &middot; adb logcat &middot; Seed Vault probe</div>
+<span class="k">features                :</span> [<span class="ok">"solana:signTransactions"</span>]
+<span class="k">supported versions      :</span> [<span class="k">"legacy"</span>, <span class="ok">0</span>]
+<span class="k">feePayer in transaction :</span> <span class="hot">D6ZhtNQ5nT9ZnTHUbqXZsTx5MH2rPFiBBggX4hY1WePM</span>
+<span class="k">                          </span> <span class="k">(the CDP facilitator — NOT the user)</span>
+<span class="k">signature returned      :</span> <span class="ok">true</span>  <span class="k">/</span>  <span class="ok">64 bytes</span>
+<span class="k">instructions injected   :</span> <span class="ok">none  (3 -&gt; 3)</span>
+<span class="k">only mutation           :</span> <span class="hot">compute-unit price  1000 -&gt; 100000 microLamports</span>
+    </div>
+
+    <div class="readout">
+      <div><dt>Signs foreign fee payer</dt><dd class="yes">Yes</dd></div>
+      <div><dt>Supports v0</dt><dd class="yes">Yes</dd></div>
+      <div><dt>Corrupts instructions</dt><dd class="yes">No</dd></div>
+      <div><dt>Rewrites priority fee</dt><dd class="note">Yes — and that is the trap</dd></div>
+    </div>
+
+    <p style="margin-top:26px">
+      Seed Vault signed a partially&#8209;signed v0 transaction it does not pay the fee for. It supports v0.
+      It injects nothing. <strong>The signing step — the one everybody assumed would fail — works.</strong>
+    </p>
+    <p>
+      And the single mutation it makes is the entire engineering problem, stated precisely:
+      the client must implement <strong>@solana/kit's <code>TransactionModifyingSigner</code></strong>, not
+      <code>TransactionPartialSigner</code>. A partial signer staples the signature onto the <em>original</em>
+      message — and the wallet's priority&#8209;fee bump silently invalidates it. The payment fails verification
+      with no useful error. Every developer who attempts this will hit that wall, and most will conclude
+      it cannot be done.
+    </p>
+    <div class="readout" style="margin-top:30px">
+      <div><dt>Proven on device</dt><dd class="yes">Seed Vault authorises an x402 payment</dd></div>
+      <div><dt>Remaining work</dt><dd class="note">Packaging x402 for React&nbsp;Native</dd></div>
+    </div>
+    <p style="margin-top:26px">
+      To be exact about what is and is not done: the <strong>protocol</strong> question is answered — the wallet
+      signs, and I know the one interface detail that makes it verify. What is left is <strong>packaging</strong>:
+      x402's client is built on @solana/kit, which assumes a browser crypto stack React Native does not have.
+      That is engineering, not research, and it is milestone one.
+    </p>
+    <p>
+      <strong>I am not applying to find out whether this works. I already know it works, and I know why it is hard.</strong>
+    </p>
+  </section>
+
+  <section>
+    <div class="ix">Instruction 01 &nbsp;&middot;&nbsp; What I will build</div>
+    <h2>Seeker402 — the phone half of the machine economy</h2>
+    <ol class="build">
+      <li>
+        <h3>seeker402 — the SDK. MIT, npm, React Native.</h3>
+        <p>The Seed Vault ↔ x402 bridge: an MWA&#8209;backed <code>TransactionModifyingSigner</code> for @solana/kit,
+        plus the React Native crypto layer x402 needs (RN has no <code>crypto.subtle</code>; associated&#8209;token&#8209;account
+        derivation requires SHA&#8209;256). Any Seeker app gains one call — <code>await payFetch(url)</code> — and can
+        buy anything on the x402 rail.</p>
+      </li>
+      <li>
+        <h3>Session budgets — the primitive that makes micropayments usable</h3>
+        <p>You cannot ask for a fingerprint on every $0.001 call. So: one Seed Vault signature performs an
+        SPL <code>Approve</code>, delegating a capped amount to an ephemeral session key. Calls then stream
+        silently until the budget is spent. Funds never leave the user's wallet. Capped, revocable with
+        <code>Revoke</code>, non&#8209;custodial. This is new, and it is what turns a demo into a product.</p>
+      </li>
+      <li>
+        <h3>SKR settlement — an open&#8209;source x402 facilitator</h3>
+        <p>Nothing in x402 requires USDC; the asset field is just an SPL mint. A facilitator that verifies
+        and settles in SKR makes SKR spendable on machine services, from the phone.</p>
+      </li>
+      <li>
+        <h3>Reference app: skrly — already live on the dApp Store</h3>
+        <p>Not a demo I promise to build. A shipped app that becomes the first application in the world to
+        pay HTTP 402 from hardware&#8209;backed keys, buying live market data per query.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="ix">Instruction 02 &nbsp;&middot;&nbsp; How SKR is used</div>
+    <h2>Build the thing that makes other people spend it</h2>
+    <p>
+      SKR becomes the settlement currency for machine payments on mobile — <strong>payments</strong>, one of the four
+      uses Solana Mobile names directly. Endpoints priced in USD, settled in USDC <em>or</em> SKR, with a
+      developer&#8209;configurable discount for paying in SKR. Every app that adopts seeker402 becomes an SKR sink.
+      The session&#8209;budget primitive works identically on an SKR token account.
+    </p>
+    <p>
+      I am explicitly <strong>not</strong> asking for SKR to distribute across an existing user base.
+    </p>
+  </section>
+
+  <section>
+    <div class="ix">Instruction 03 &nbsp;&middot;&nbsp; Milestones</div>
+    <h2>Ten weeks, three deliveries</h2>
+    <table>
+      <tr><th style="width:96px">Window</th><th>Delivered</th></tr>
+      <tr>
+        <td class="ms">Wk 1–3</td>
+        <td><strong>seeker402 v0.1 on npm, MIT.</strong> MWA modifying signer, RN crypto layer, end&#8209;to&#8209;end USDC
+        payment from a Seeker to a live x402 endpoint. Public write&#8209;up of the Seed Vault findings above, so no
+        other developer loses a week to the priority&#8209;fee trap.</td>
+      </tr>
+      <tr>
+        <td class="ms">Wk 4–6</td>
+        <td><strong>Session budgets.</strong> Approve/Revoke delegate flow, spend caps, in&#8209;app budget UI.
+        skrly ships to the dApp Store paying per call for live data — first shipped app on the rail.</td>
+      </tr>
+      <tr>
+        <td class="ms">Wk 7–10</td>
+        <td><strong>SKR settlement.</strong> Open&#8209;source facilitator settling in SKR, SKR&#8209;priced endpoints,
+        <code>create-seeker402-app</code> starter template. Public adoption report: npm installs, on&#8209;chain payment
+        counts, SKR settled.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="ix">Instruction 04 &nbsp;&middot;&nbsp; Use of funds</div>
+    <h2>$10,000</h2>
+    <table>
+      <tr><th>Line</th><th class="n" style="text-align:right">USD</th></tr>
+      <tr><td>SDK core, React Native crypto layer, upstream fixes — 5 weeks</td><td class="n">4,300</td></tr>
+      <tr><td>Session&#8209;budget delegate module, skrly integration, dApp Store release</td><td class="n">2,000</td></tr>
+      <tr><td>Open&#8209;source SKR settlement facilitator</td><td class="n">1,500</td></tr>
+      <tr><td><strong>Security review of the delegate&#8209;authority and signing paths</strong><br><span style="color:#6B6F76;font-size:13.5px">A capped delegate can pull tokens from a user's account. This line is not optional.</span></td><td class="n">1,500</td></tr>
+      <tr><td>Docs, starter template, worked examples</td><td class="n">500</td></tr>
+      <tr><td>Infra — Helius RPC, CI, on&#8209;device testing, mainnet settlement, publishing</td><td class="n">200</td></tr>
+      <tr class="total"><td>Total</td><td class="n">10,000</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="ix">Instruction 05 &nbsp;&middot;&nbsp; Ability to execute</div>
+    <h2>I am on both sides of the protocol I am proposing to bridge</h2>
+    <p>
+      Solo builder. Publisher <strong>seekdaseek</strong> on the Solana dApp Store.
+    </p>
+    <p class="tight">— Apps shipped to the Solana dApp Store, including <strong>skrly</strong> (also live at skrly.app).</p>
+    <p class="tight">— I <em>operate</em> a live x402 server: <strong>AgentFeed</strong>, 15 paid routes, real mainnet
+      USDC settlement through the CDP facilitator. Discoverable on Bazaar. <code>github.com/seekdaseek/agentfeed</code></p>
+    <p class="tight">— Open source: <code>@seekdaseek/plugin-agentfeed</code> on npm; pull request merged upstream
+      into elizaOS; listed on the MCP Registry.</p>
+    <p style="margin-top:16px">
+      That is why the probe on the previous page took one afternoon rather than one month: I already had both
+      halves — the x402 server, and eight shipped MWA/Seed Vault apps. There is no research risk left in this
+      proposal. There is only the work.
+    </p>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="ix">Instruction 06 &nbsp;&middot;&nbsp; Public good</div>
+    <h2>Everything is MIT and public</h2>
+    <p>
+      The SDK, the facilitator, the starter template, and the Seed Vault findings. The point is that the
+      <strong>second</strong> developer who tries this spends an hour, not a month.
+    </p>
+
+    <div class="sig">
+      <div>
+        <div class="who">Seeker402</div>
+        <div style="color:var(--muted);font-size:14px;margin-top:4px">Solana Mobile Grant Request &middot; $10,000</div>
+      </div>
+      <div class="meta">
+        <a href="https://ochinimus.app">ochinimus.app</a><br>
+        <a href="https://github.com/seekdaseek/agentfeed">github.com/seekdaseek/agentfeed</a><br>
+        Telegram &middot; ochinimus
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
